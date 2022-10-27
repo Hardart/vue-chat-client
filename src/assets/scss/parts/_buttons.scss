@@ -1,0 +1,109 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  color: #fff;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  border-style: none;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: $animation-duration;
+  user-select: none;
+  appearance: none;
+  -webkit-user-select: none;
+  backface-visibility: hidden;
+  touch-action: manipulation;
+  overflow: hidden;
+  white-space: nowrap;
+  fill: currentColor;
+  border-radius: $global-border-radius;
+
+  &:hover:not(&#{&}-close):not(&#{&}-default):not(&:disabled) {
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .05),
+      0 1px 4px rgba(0, 0, 0, .05);
+    opacity: 1;
+    transform: translateY(0);
+
+    &:after {
+      opacity: .5;
+    }
+  }
+
+  &:active:not(&#{&}-close):not(&#{&}-default):not(&:disabled) {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, .1),
+      0 0 10px 0 rgba(0, 0, 0, .1),
+      0 1px 4px -1px rgba(0, 0, 0, .1);
+    transform: translateY(2px);
+
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  @each $color in map-keys($theme-colors) {
+    &-#{$color} {
+      @include set-colors(map-get($theme-colors, $color), 0%);
+
+      &:hover:not(&#{&}-close):not(&:disabled) {
+        @include set-colors(map-get($theme-colors, $color), 7%);
+      }
+
+      &:active {
+        @include set-colors(map-get($theme-colors, $color), 12%);
+      }
+    }
+  }
+
+  &#{&}-default {
+    background-color: transparent;
+  }
+
+  &#{&}-border {
+    background-color: transparent;
+    border: 1px solid currentColor
+  }
+
+  &#{&}-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    margin: 20px;
+    z-index: 1001;
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &#{&}-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: currentColor;
+
+  }
+
+  &:disabled,
+  &#{&}-icon:disabled {
+    color: $dark;
+    background-color: $muted;
+    opacity: 0.4;
+    transform: none;
+    box-shadow: none;
+  }
+}

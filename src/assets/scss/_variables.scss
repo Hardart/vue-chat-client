@@ -1,0 +1,115 @@
+$light:                              #f2f2f2 !default;
+$dark:                               #2e2e2e !default;
+
+$primary:                            #054276 !default;
+$secondary:                          #08345d !default;
+$success:                            #229b7a !default;
+$warning:                            #c94e06 !default;
+$muted:                              #e4e4e4 !default;
+$danger:                             #9d3a3a !default;
+$disable:                            #41739f !default;
+$disable-bg:                         #353340 !default;
+
+$breakpoint-small:                   640px !default;  // Phone landscape
+$breakpoint-medium:                  960px !default;  // Tablet Landscape
+$breakpoint-large:                   1200px !default; // Desktop
+$breakpoint-xlarge:                  1600px !default; // Large Screens
+
+$animation-duration:                 150ms !default;
+
+$standart:                           0.875rem !default;
+$small:                              0.7rem !default;
+
+$global-border-radius:               10px;
+
+$breakpoints: (
+  s:           $breakpoint-small,
+  m:           $breakpoint-medium,
+  l:           $breakpoint-large,
+  xl:          $breakpoint-xlarge,
+) !default;
+
+
+$theme-colors: (
+  primary:     $primary,
+  secondary:   $secondary,
+  success:     $success,
+  warning:     $warning,
+  danger:      $danger,
+  muted:       $muted,
+  light:       $light,
+  dark:        $dark,
+) !default;
+
+
+$spacing: (
+  0:   0,
+  1:   1px,
+  2:   2px,
+  3:   3px,
+  4:   4px,
+  5:   5px,
+  6:   6px,
+  7:   7px,
+  8:   8px,
+  9:   9px,
+  10:  10px,
+  11:  11px,
+  12:  12px,
+  13:  13px,
+  14:  14px,
+  15:  15px,
+  16:  16px,
+  17:  17px,
+  18:  18px,
+  19:  19px,
+  20:  20px,
+  25:  25px,
+  30:  30px,
+  35:  35px,
+  40:  40px,
+  45:  45px,
+  50:  50px,
+) !default;
+
+$gaps: (
+  s:   25px,
+  m:   30px,
+  l:   35px,
+  xl:  40px,
+) !default;
+
+$width-values: (
+  20:  20%,
+  25:  25%,
+  33:  33.33%,
+  40:  40%,
+  50:  50%,
+  70:  70%,
+  75:  75%,
+  66:  66.66%,
+  100: 100%,
+  xs:  100px,
+  s:   200px,
+  m:   300px,
+  l:   450px,
+) !default;
+
+$height-values: (
+  20vh:   20vh,
+  25vh:   25vh,
+  33vh:   33.33vh,
+  40vh:   40vh,
+  50vh:   50vh,
+  66vh:   66.66vh,
+  75vh:   75vh,
+  90vh:   90vh,
+  95vh:   95vh,
+  100vh:  100vh,
+  xs:     100px,
+  s:      200px,
+  m:      300px,
+  l:      450px,
+  lg:     650px,
+  full:   100%,
+) !default;

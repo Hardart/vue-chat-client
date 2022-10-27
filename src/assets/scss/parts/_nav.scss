@@ -1,0 +1,43 @@
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  margin-left: -25px;
+  list-style: none;
+
+  &__header {
+    color: rgba($color: $muted, $alpha: 0.3);
+    text-transform: uppercase;
+    padding: 10px 15px;
+  }
+
+  &__item {
+    @include display-flex;
+    color: $light;
+    padding: 10px 15px;
+    cursor: pointer;
+
+    &:hover {
+      border-radius: 15px;
+      background-color: rgba($color: $muted, $alpha: 0.1);
+    }
+
+    &.active {
+      color: $warning;
+      position: relative;
+      border: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
