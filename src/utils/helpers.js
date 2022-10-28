@@ -20,6 +20,13 @@ export const avatar = path => {
 }
 
 /**
+ * @param {string} path
+ */
+export const roomImg = path => {
+  return config.baseURL + path
+}
+
+/**
  * @param {string} name
  */
 export const firstLetter = name => toUppercase(name.charAt(0))

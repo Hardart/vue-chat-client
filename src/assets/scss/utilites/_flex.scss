@@ -33,6 +33,10 @@
     align-items: flex-end;
   }
 
+  &-1 {
+    flex: 1;
+  }
+
   @each $value, $size in $spacing {
     &-gap-#{$value} {
       gap: $size;

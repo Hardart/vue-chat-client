@@ -1,5 +1,5 @@
 <template>
-  <div class="chat__aside bg-secondary">
+  <div class="relative h-full">
     <ul class="chat__aside--users" ref="userOnline">
       <li class="chat__aside--users__header">
         В сети - <span class="users-online--count">{{ users.length }}</span>
@@ -25,7 +25,6 @@
 
     &--users {
       @include set-absolute;
-
       &__header {
         margin: 5px;
         padding: 5px 10px;

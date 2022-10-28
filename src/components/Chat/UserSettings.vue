@@ -6,7 +6,7 @@
 
 <script setup>
   import * as UserSettings from '@/components/UserSettings/_index'
-  import { openUserSettings, isOpenUserSettings } from './_state.js'
+  import { openUserSettings, isOpenUserSettings } from './_state'
 </script>
 
 <style lang="scss" scoped>
