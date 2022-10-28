@@ -7,5 +7,8 @@ module.exports = defineConfig({
         additionalData: '@import "@/assets/scss/_variables.scss"; @import "@/assets/scss/_mixins.scss";'
       }
     }
+  },
+  devServer: {
+    port: 8080
   }
 })
