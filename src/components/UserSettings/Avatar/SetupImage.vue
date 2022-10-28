@@ -1,14 +1,14 @@
 <template>
   <Teleport to="body">
     <div v-if="isShowUploadSettings" class="full-size flex flex-center flex-middle select-avatar">
-      <div class="card card-primary w-50@m w-33@l">
+      <div class="card card-primary w-50@m w-33@l mx-20">
         <div class="card-header">
           <h2>Редактировать изображение</h2>
         </div>
 
         <div class="card-body bg-secondary pb-0">
           <div class="editing-container flex flex-center flex-middle">
-            <img :ref="elem.avatarImage" class="editing-container__image" :src="`${serverUrl}/${imgObject.path}`" alt="" />
+            <img :ref="elem.avatarImage" class="editing-container__image" :src="avatarPath(imgObject.path)" alt="" />
             <div :ref="elem.avatarBorders" class="editing-container__overlay"></div>
           </div>
           <div class="slider-container">
@@ -35,13 +35,14 @@
 
 <script setup>
   import { isShowUploadSettings, changeStateUploadSettings, changeStateUploadInput, uploadImage } from '@/features/settings/User/adds'
-  import { serverUrl } from '@/api/fetch'
   import { changeAvatar, Avatar } from '@/features/settings/User/changeAvatar'
-  import { onMounted, reactive, computed, toRefs, onUnmounted } from 'vue'
+  import { onMounted, reactive, computed, toRefs, onUnmounted, inject } from 'vue'
   import { useStore } from 'vuex'
+  import { avatar as avatarPath } from '@/utils/helpers'
+  const socket = inject('io')
   const store = useStore()
   const props = defineProps({
-    imgObject: Object,
+    imgObject: Object
   })
 
   const elements = reactive({
@@ -50,7 +51,7 @@
     grabber: null,
     slider: null,
     sliderFill: null,
-    input: null,
+    input: null
   })
   const elem = toRefs(elements)
 
@@ -70,7 +71,7 @@
   const sendAvatarForResize = async () => {
     const res = await store.dispatch('user/changeAvatar', avatar)
     if (!res) return console.warn('Возникла ошибка при изменении аватара')
-    store.dispatch('changeAvatar', user.value)
+    socket.emit('update')
     changeStateUploadSettings()
     changeStateUploadInput()
   }

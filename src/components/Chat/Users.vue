@@ -4,7 +4,7 @@
       <li class="chat__aside--users__header">
         В сети - <span class="users-online--count">{{ users.length }}</span>
       </li>
-      <UserOnlineCard v-for="user in users" :key="user.id" :user="user" />
+      <UserOnlineCard v-for="user in users" :key="user.chatID" :user="user" />
     </ul>
   </div>
 </template>
@@ -14,13 +14,6 @@
   import { computed, inject } from 'vue'
   import { useStore } from 'vuex'
   const store = useStore()
-  const socket = inject('io')
-  socket.on('users-online', users => {
-    store.dispatch('setOnlineUsers', users)
-  })
-  socket.on('clients-disconnect', users => {
-    store.dispatch('setOnlineUsers', users)
-  })
 
   const users = computed(() => store.getters['allOnline'])
 </script>

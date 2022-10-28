@@ -2,7 +2,7 @@
   <li>
     <div class="user-online">
       <div class="user-online__avatar">
-        <img :src="user.avatar" width="40" height="40" alt="user avatar" />
+        <img :src="avatar(user.avatar)" width="40" height="40" :alt="firstLetter(user.name)" />
       </div>
       <div class="user-online__name">
         <h5>{{ user.name }}</h5>
@@ -12,6 +12,8 @@
 </template>
 
 <script setup>
+  import { avatar, firstLetter } from '@/utils/helpers'
+
   const props = defineProps({
     user: Object
   })

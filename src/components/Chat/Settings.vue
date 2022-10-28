@@ -1,7 +1,7 @@
 <template>
   <div class="user-settings bg-dark">
     <div class="user-settings__user--avatar">
-      <img :src="user?.avatar" width="42" alt="" />
+      <img :src="avatar(user?.avatar)" width="42" alt="" />
     </div>
     <div class="user-settings__user--info">
       <div class="uk-text-bold user-name">{{ user?.name }}</div>
@@ -19,6 +19,7 @@
   import { useStore } from 'vuex'
   import { useRouter } from 'vue-router'
   import { isOpenUserSettings } from './_state.js'
+  import { avatar } from '@/utils/helpers'
   const router = useRouter()
   const store = useStore()
   const socket = inject('io')

@@ -6,7 +6,7 @@
       <div class="card-header">
         <div class="grid flex flex-middle">
           <div class="w-auto relative">
-            <img class="user-avatar bdr-circle" width="120" height="120" :src="user.avatar" />
+            <img class="user-avatar bdr-circle" width="120" height="120" :src="avatar(user.avatar)" />
             <p class="user-id">#{{ user.chatID }}</p>
           </div>
           <div class="w-expand">
@@ -28,7 +28,7 @@
         <div class="flex flex-middle">
           <div class="w-expand">
             <h4 class="card__title">Электронная почта</h4>
-            <p>{{ user.email }}</p>
+            <p>{{ hideEmail(user.email) }}</p>
           </div>
           <PnzButton color="secondary" text="Изменить" disabled />
         </div>
@@ -47,8 +47,7 @@
   import { useStore } from 'vuex'
   import { changeStateUploadInput } from '@/features/settings/User/adds'
   import { isOpenChangeNameModal } from '@/features/settings/changeInfo'
-  import { changeState } from '@/utils/helpers'
-  import PnzButton from '@/components/UI/PnzButton.vue'
+  import { avatar, changeState } from '@/utils/helpers'
 
   const props = defineProps({
     name: String
@@ -56,6 +55,8 @@
   const store = useStore()
   const user = computed(() => store.getters['user/get'])
   const open = () => changeState(isOpenChangeNameModal)
+
+  const hideEmail = email => email.replace(/.+(?=@)/g, '******')
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 import PnzButton from './PnzButton.vue'
 import PnzInput from './PnzInput.vue'
-import PnzIconInput from './PnzInput.vue'
+import PnzIconInput from './PnzIconInput.vue'
 import PnzText from './PnzText.vue'
 import PnzTooltip from './PnzTooltip.vue'
 

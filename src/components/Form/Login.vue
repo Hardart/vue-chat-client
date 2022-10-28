@@ -1,16 +1,16 @@
 <template>
   <form>
     <div class="mb-10">
-      <PnzIconInput v-model="authData.email" :icon="icons.mail" type="email" :required="true" />
+      <PnzIconInput v-model="authData.email" :icon="icons.mail" type="email" placeholder="Email" :required="true" />
     </div>
     <div :class="!isLoginForm ? 'mb-10' : 'mb-20'">
-      <PnzIconInput v-model="authData.password" :icon="icons.lock" type="password" :required="true" />
+      <PnzIconInput v-model="authData.password" :icon="icons.lock" type="password" placeholder="Пароль" :required="true" />
     </div>
     <div class="mb-10" v-if="!isLoginForm">
-      <PnzIconInput v-model="authData.passwordCopy" :icon="icons.lock" type="password" :required="true" />
+      <PnzIconInput v-model="authData.passwordCopy" :icon="icons.lock" type="password" placeholder="Повторите пароль" :required="true" />
     </div>
     <div class="mb-20" v-if="!isLoginForm">
-      <PnzIconInput v-model="authData.name" :icon="icons.lock" :required="true" />
+      <PnzIconInput v-model="authData.name" :icon="icons.user" placeholder="Ваше имя" :required="true" />
     </div>
     <div class="mb-10" v-if="authData.errorText != ''">
       <p class="text-danger">{{ authData.errorText }}</p>
@@ -27,8 +27,6 @@
   import { useStore } from 'vuex'
   import { isLoginForm, authData } from '@/features/auth/authData'
   import icons from '@/utils/icons'
-  import PnzIconInput from '../UI/PnzIconInput.vue'
-  import PnzButton from '../UI/PnzButton.vue'
 
   const store = useStore()
   const router = useRouter()

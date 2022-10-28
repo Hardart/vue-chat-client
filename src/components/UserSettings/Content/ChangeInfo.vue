@@ -28,10 +28,7 @@
 
   const changeName = async name => {
     await store.dispatch('user/changeName', name)
-    socket.emit('enter')
-    socket.on('users-online', users => {
-      store.dispatch('setOnlineUsers', users)
-    })
+    socket.emit('update')
     valueForChange.value = ''
     changeState(isOpenChangeNameModal)
     return

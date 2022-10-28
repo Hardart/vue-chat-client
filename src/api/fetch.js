@@ -1,6 +1,8 @@
 import { ref, isRef, unref, watchEffect } from 'vue'
 import { getAccessToken, setTokens } from '@/utils/tokens'
-export const serverUrl = 'http://localhost:5500'
+import config from '@/config'
+const serverUrl = config.baseURL
+
 export function useFetch(url) {
   const data = ref(null)
   const error = ref(null)
@@ -51,14 +53,14 @@ export function uploadAvatar(body, action = 'avatar') {
 
     const token = getAccessToken()
     let headers = {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`
     }
     if (bodyValue?.avatar) headers = { ...headers, 'Content-Type': 'application/json' }
     try {
       const res = await fetch(url, {
         body: bodyValue?.avatar ? JSON.stringify(bodyValue) : bodyValue,
         method: 'POST',
-        headers,
+        headers
       })
       data.value = await res.json()
     } catch (e) {
@@ -97,8 +99,8 @@ export async function resizeAvatar(body) {
         method: 'POST',
         headers: {
           authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json'
+        }
       })
       data.value = await res.json()
     } catch (e) {
@@ -116,16 +118,4 @@ export async function resizeAvatar(body) {
   }
 
   return { data, error, retry: doFetch }
-}
-
-function timeout() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (Math.random() > 0.3) {
-        resolve()
-      } else {
-        reject(new Error('Random Error'))
-      }
-    }, 300)
-  })
 }

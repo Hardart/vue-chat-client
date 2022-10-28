@@ -34,11 +34,16 @@ export default createStore({
       commit('onlineUsers', users)
     },
 
-    changeAvatar({ state, commit }, user) {
-      const userChangeAvatar = state.usersOnline.map(userOnline => {
-        userOnline.chatID !== user.chatID ? userOnline : (userOnline.avatar = user.avatar)
-      })
-      commit('onlineUsers', userChangeAvatar)
+    changeAvatar({ getters, commit }, user) {
+      const users = getters.allOnline
+      users.map(forChange(user))
+      commit('onlineUsers', users)
+    },
+
+    changeName({ getters, commit }, user) {
+      const users = getters.allOnline
+      users.map(forChange(user, 'name'))
+      commit('onlineUsers', users)
     }
   },
   modules: {
@@ -46,3 +51,9 @@ export default createStore({
     user
   }
 })
+
+function forChange(user, field = 'avatar') {
+  return function (u) {
+    if (user.chatID === u.chatID) u[field] = user[field]
+  }
+}
