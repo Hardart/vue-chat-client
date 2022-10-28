@@ -2,25 +2,18 @@
   <div class="chat">
     <Chat.AdminSettings />
     <Chat.UserSettings />
-    <HeaderLayout />
+    <Layouts.Header />
     <div class="chat__wrap">
-      <LSidebarLayout>
-        <Chat.Rooms />
-      </LSidebarLayout>
+      <Layouts.LeftSidebar />
       <Chat.Main />
-      <RSidebarLayout v-if="openUserPanel">
-        <Chat.Users />
-        <Chat.Settings />
-      </RSidebarLayout>
+      <Layouts.RightSidebar v-if="openUserPanel" />
     </div>
   </div>
 </template>
 
 <script setup>
-  import HeaderLayout from '@/layouts/Header-Layout.vue'
-  import LSidebarLayout from '@/layouts/L-Sidebar-Layout.vue'
-  import RSidebarLayout from '@/layouts/R-Sidebar-Layout.vue'
   import * as Chat from '@/components/Chat/_index'
+  import * as Layouts from '@/layouts'
   import { openUserPanel } from './_state'
 </script>
 

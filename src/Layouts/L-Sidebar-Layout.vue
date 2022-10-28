@@ -1,9 +1,11 @@
 <template>
   <div class="bg-secondary flex flex-col w-xs@s hidden@s">
-    <slot />
+    <Chat.Rooms />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+  import * as Chat from '@/components/Chat/_index'
+</script>
 
 <style lang="scss"></style>

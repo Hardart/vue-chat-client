@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-  import * as Header from '@/components/Chat/Header'
+  import * as Header from '@/components/Chat/Header/index'
   import { isShowTooltip, coords } from '@/features/addTooltip'
 </script>
 
