@@ -13,7 +13,7 @@
 
 <script setup>
   import * as Chat from '@/components/Chat/_index'
-  import * as Layouts from '@/layouts'
+  import * as Layouts from '../../layouts/index'
   import { openUserPanel } from './_state'
 </script>
 
