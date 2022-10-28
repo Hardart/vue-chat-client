@@ -1,15 +1,14 @@
 <template>
   <div class="flex flex-between flex-middle p-10 bg-dark">
-    <Header.Logo />
+    <Header.Logo title="Vue Chat" />
     <Header.Navigation />
   </div>
-  <Teleport to="body">
-    <PnzTooltip v-if="isShowTooltip" :el="coords" />
-  </Teleport>
+
+  <PnzTooltip v-if="isShowTooltip" :el="coords" />
 </template>
 
 <script setup>
-  import * as Header from './Header/index'
+  import * as Header from '@/components/Chat/Header'
   import { isShowTooltip, coords } from '@/features/addTooltip'
 </script>
 

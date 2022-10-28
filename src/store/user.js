@@ -1,6 +1,6 @@
 import authAPI from '@/api/auth'
 import usersAPI from '@/api/users'
-import { getAccessToken, setTokens, cleanTokensData, getJWTPayload } from '@/utils/tokens'
+import JWT from '@/utils/tokens'
 
 let resolveUserAuth
 let promise = new Promise(resolve => {
@@ -39,8 +39,8 @@ export default {
     async login({ commit }, { email, password }) {
       let res = await authAPI.login(email, password)
       if (res.data) return { message: res.data.message, errors: res.data.errors }
-      setTokens(res.accessToken)
-      const { name, roles, chatID, avatar } = getJWTPayload(res.accessToken)
+      JWT.setAccessTokens(res.accessToken)
+      const { name, roles, chatID, avatar } = JWT.decodeAccessToken()
       commit('setUser', { email, name, roles, chatID, avatar })
       return true
     },
@@ -48,24 +48,24 @@ export default {
     async autoLogin({ commit }) {
       let res = await authAPI.check()
       if (res.message) return resolveUserAuth()
-      const { email, name, roles, chatID, avatar } = getJWTPayload(getAccessToken())
+      const { email, name, roles, chatID, avatar } = JWT.decodeAccessToken()
       commit('setUser', { email, name, roles, chatID, avatar })
       resolveUserAuth()
     },
 
     async logout({ commit }) {
       let res = await authAPI.logout()
-      if (res.message) return res.message
+      if (res.message) return console.error(res.message)
       commit('setUser', null)
-      cleanTokensData()
+      JWT.cleanAccessToken()
       return res
     },
 
     async changeAvatar({ commit }, image) {
       const res = await usersAPI.changeAvatar(image)
       if (res.data) return { message: res.data.message, errors: res.data.errors }
-      setTokens(res.accessToken)
-      const { avatar } = getJWTPayload(res.accessToken)
+      JWT.setAccessTokens(res.accessToken)
+      const { avatar } = JWT.decodeAccessToken()
       commit('updateUser', avatar)
       return true
     },
@@ -79,8 +79,8 @@ export default {
     async changeName({ commit }, payload) {
       const res = await usersAPI.changeName(payload)
       if (res.data) return { message: res.data.message, errors: res.data.errors }
-      setTokens(res.accessToken)
-      const { name } = getJWTPayload(res.accessToken)
+      JWT.setAccessTokens(res.accessToken)
+      const { name } = JWT.decodeAccessToken()
       commit('changeUserName', name)
     }
   }

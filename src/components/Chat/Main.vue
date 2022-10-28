@@ -11,7 +11,7 @@
   import * as Message from '@/components/Messages/_index'
   import * as Chat from '@/components/Chat/_index'
 
-  const setMessageRead = () => console.log('read')
+  // const setMessageRead = () => console.log('read')
 </script>
 
 <style lang="scss">

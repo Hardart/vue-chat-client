@@ -1,5 +1,7 @@
 <template>
-  <div ref="$this" class="tooltip" :style="`top: ${top}px; left: ${center}px`">{{ el.title }}</div>
+  <Teleport to="body">
+    <div ref="$this" class="tooltip" :style="`top: ${top}px; left: ${center}px`">{{ el.title }}</div>
+  </Teleport>
 </template>
 
 <script setup>
@@ -11,7 +13,7 @@
   const top = ref(0)
 
   const props = defineProps({
-    el: null,
+    el: null
   })
   onMounted(() => {
     const side = props.el.position

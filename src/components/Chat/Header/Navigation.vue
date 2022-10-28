@@ -1,8 +1,15 @@
 <template>
   <div class="flex flex-gap-10">
-    <PnzButton v-tooltip="{ position: 'bottom', title: 'Search' }" class="p-11 shadow-2" color="primary" icon="search" />
-    <PnzButton v-tooltip="{ position: 'bottom', title: 'Admin Settings' }" class="p-11 shadow-2" color="primary" icon="cog" @click="change" v-if="user?.roles.some(role => role == 'admin')" />
-    <PnzButton v-tooltip="{ position: 'bottom', title: 'Show/Hide Users' }" class="p-11 shadow-2" color="primary" icon="users" @click="isActiveUserPanel" />
+    <PnzButton class="p-11 shadow-2" color="primary" icon="search" v-tooltip="{ position: 'bottom', title: 'Search' }" />
+    <PnzButton 
+      v-if="user?.roles.some(role => role == 'admin')" 
+      @click="change" 
+      class="p-11 shadow-2" 
+      color="primary" 
+      icon="cog" 
+      v-tooltip="{ position: 'bottom', title: 'Admin Settings' }" 
+    />
+    <PnzButton class="p-11 shadow-2" color="primary" icon="users" @click="isActiveUserPanel" v-tooltip="{ position: 'bottom', title: 'Show/Hide Users' }" />
   </div>
 </template>
 

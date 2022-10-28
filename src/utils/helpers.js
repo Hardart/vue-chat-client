@@ -15,6 +15,7 @@ export const changeState = ref => (ref.value = !ref.value)
  * @param {string} path
  */
 export const avatar = path => {
+  if (!path) return
   if (!path.includes('_avatar')) path = '/' + path
   return config.baseURL + path
 }

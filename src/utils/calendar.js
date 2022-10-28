@@ -3,9 +3,6 @@ class Calendar {
     return new Calendar()
   }
 
-  static month(time) {
-    // if (typeof n == 'string' || n < 0 || n > 12) throw new Error('parametr n can be only number in range 0 - 12')
-  }
   static messageTime = ''
 
   messageDate(time) {
@@ -39,13 +36,13 @@ class Calendar {
       case 0:
         return this.checkHour
       case 1:
-        return `Вчера в ${this.toLocaleTime(Calendar.messageTime)}`
+        return `вчера в ${this.toLocaleTime(Calendar.messageTime)}`
       case 2:
-        return `Позавчера в ${this.toLocaleTime(Calendar.messageTime)}`
+        return `позавчера в ${this.toLocaleTime(Calendar.messageTime)}`
       case 3:
       case 4:
       case 5:
-        return 'Пару дней назад'
+        return 'пару дней назад'
     }
   }
 
@@ -56,13 +53,13 @@ class Calendar {
       case 0:
         return this.checkMinutes
       case 1:
-        return `Час назад`
+        return `час назад`
       case 2:
       case 3:
       case 4:
-        return 'Пару часов назад'
+        return 'пару часов назад'
       default:
-        return `Сегодня в ${this.toLocaleTime(Calendar.messageTime)}`
+        return `сегодня в ${this.toLocaleTime(Calendar.messageTime)}`
     }
   }
 
@@ -71,15 +68,15 @@ class Calendar {
 
     switch (this.time().minutes - minutes) {
       case 0:
-        return `Сейчас`
+        return `сейчас`
       case 1:
-        return `Минуту назад`
+        return `минуту назад`
       case 2:
       case 3:
       case 4:
-        return 'Пару минут назад'
+        return 'пару минут назад'
       default:
-        return `Сегодня в ${this.toLocaleTime(Calendar.messageTime)}`
+        return `сегодня в ${this.toLocaleTime(Calendar.messageTime)}`
     }
   }
 

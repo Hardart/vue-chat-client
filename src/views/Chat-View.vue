@@ -1,7 +1,7 @@
 <template>
-   <ChatContainer />
+  <ChatContainer />
 </template>
 
 <script setup>
-   import ChatContainer from '@/components/Chat/Container.vue'
+  import ChatContainer from '@/components/Chat/Container.vue'
 </script>

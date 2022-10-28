@@ -1,12 +1,9 @@
 <template>
-  <div v-if="openUserSettings" class="full-size bg-dark settings">
-    <UserSettings.Container :isOpen="isOpenUserSettings" />
-  </div>
+  <UserSettings.Container />
 </template>
 
 <script setup>
   import * as UserSettings from '@/components/UserSettings/_index'
-  import { openUserSettings, isOpenUserSettings } from './_state'
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,9 @@
 <template>
-  <div>LOGO</div>
+  <div>{{ title }}</div>
 </template>
 
-<script setup></script>
+<script setup>
+  defineProps(['title'])
+</script>
 
 <style></style>

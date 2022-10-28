@@ -1,20 +1,21 @@
 <template>
-  <div class="section">
-    <div class="container container-l">
-      <UserSettings.AvatarUploadInput />
-      <PnzButton @click="isOpen" icon="close" />
-      <h2 class="settings-title">Настройки</h2>
-      <UserSettings.List />
+  <div v-if="isOpenUserSettings" class="full-size bg-dark settings">
+    <div class="section">
+      <div class="container container-l">
+        <UserSettings.AvatarUploadInput />
+        <PnzButton @click="closeSettings" icon="close" />
+        <h2 class="settings-title">Настройки</h2>
+        <UserSettings.List />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
   import * as UserSettings from './_index'
-
-  const props = defineProps({
-    isOpen: Function
-  })
+  import { isOpenUserSettings } from '../Chat/_state'
+  import { changeState } from '@/utils/helpers'
+  const closeSettings = () => changeState(isOpenUserSettings)
 </script>
 
 <style lang="scss">

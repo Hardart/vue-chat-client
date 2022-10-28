@@ -1,5 +1,5 @@
 import { ref, isRef, unref, watchEffect } from 'vue'
-import { getAccessToken, setTokens } from '@/utils/tokens'
+import JWT from '@/utils/tokens'
 import config from '@/config'
 const serverUrl = config.baseURL
 
@@ -51,7 +51,7 @@ export function uploadAvatar(body, action = 'avatar') {
 
     const bodyValue = unref(body)
 
-    const token = getAccessToken()
+    const token = JWT.getAccessToken()
     let headers = {
       authorization: `Bearer ${token}`
     }

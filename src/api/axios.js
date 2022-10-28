@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAccessToken, setTokens } from '@/utils/tokens'
+import JWT from '@/utils/tokens'
 import config from '@/config'
 
 export default () => {
@@ -17,7 +17,7 @@ export default () => {
 
       const response = await axios.get(`${baseURL}/refresh`, { withCredentials: true })
       if (response.data.message) return Promise.reject(err)
-      setTokens(response.data.accessToken)
+      JWT.setAccessTokens(response.data.accessToken)
       return axios(addAccessToken(err.config))
     }
   )
@@ -27,7 +27,7 @@ export default () => {
 
 // добавляем accessToken в header Authorization
 function addAccessToken(request) {
-  const token = getAccessToken()
+  const token = JWT.getAccessToken()
   if (token !== null) request.headers.Authorization = `Bearer ${token}`
   return request
 }

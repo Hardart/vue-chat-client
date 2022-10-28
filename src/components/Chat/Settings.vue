@@ -8,7 +8,7 @@
       <div class="uk-text-meta user-id">#{{ user?.chatID }}</div>
     </div>
     <div class="user-settings__buttons">
-      <PnzButton v-tooltip="{ title: 'Настройки' }" class="mr-5" icon="cog" @click="isOpenUserSettings" />
+      <PnzButton v-tooltip="{ title: 'Настройки' }" class="mr-5" icon="cog" @click="openSettings" />
       <PnzButton v-tooltip="{ title: 'Выйти' }" icon="sign-out" @click="tryLogout" />
     </div>
   </div>
@@ -19,7 +19,7 @@
   import { useStore } from 'vuex'
   import { useRouter } from 'vue-router'
   import { isOpenUserSettings } from './_state'
-  import { avatar } from '@/utils/helpers'
+  import { avatar, changeState } from '@/utils/helpers'
   const router = useRouter()
   const store = useStore()
   const socket = inject('io')
@@ -31,6 +31,7 @@
     socket.emit('logout')
     router.push('/login')
   }
+  const openSettings = () => changeState(isOpenUserSettings)
 </script>
 
 <style lang="scss">

@@ -1,33 +1,20 @@
 const LOCAL_ACCESS_NAME = 'auth_accessToken'
+import jwt_decode from 'jwt-decode'
 
-function setTokens(access) {
-   localStorage.setItem(LOCAL_ACCESS_NAME, access)
+export default class JWT {
+  static setAccessTokens(access) {
+    localStorage.setItem(LOCAL_ACCESS_NAME, access)
+  }
+
+  static cleanAccessToken() {
+    localStorage.removeItem(LOCAL_ACCESS_NAME)
+  }
+
+  static getAccessToken() {
+    return localStorage.getItem(LOCAL_ACCESS_NAME)
+  }
+
+  static decodeAccessToken() {
+    return jwt_decode(this.getAccessToken())
+  }
 }
-
-function cleanTokensData() {
-   localStorage.removeItem(LOCAL_ACCESS_NAME)
-}
-
-function getAccessToken() {
-   return localStorage.getItem(LOCAL_ACCESS_NAME)
-}
-
-function getJWTPayload(token) {
-   return parseJWT(token).payload
-}
-
-function parseJWT(token) {
-   let parts = token.split('.')
-
-   return {
-      header: parsePart(parts[0]),
-      payload: parsePart(parts[1]),
-      sign: parts[2],
-   }
-}
-
-function parsePart(str) {
-   return JSON.parse(global.window.atob(str))
-}
-
-export { setTokens, cleanTokensData, getJWTPayload, getAccessToken }

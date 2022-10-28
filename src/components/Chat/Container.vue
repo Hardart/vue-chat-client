@@ -2,7 +2,7 @@
   <div class="chat">
     <Chat.AdminSettings />
     <Chat.UserSettings />
-    <Chat.Header />
+    <HeaderLayout />
     <div class="chat__wrap">
       <LSidebarLayout>
         <Chat.Rooms />
@@ -17,9 +17,10 @@
 </template>
 
 <script setup>
+  import HeaderLayout from '@/layouts/Header-Layout.vue'
+  import LSidebarLayout from '@/layouts/L-Sidebar-Layout.vue'
+  import RSidebarLayout from '@/layouts/R-Sidebar-Layout.vue'
   import * as Chat from '@/components/Chat/_index'
-  import LSidebarLayout from '@/Layouts/L-Sidebar-Layout.vue'
-  import RSidebarLayout from '@/Layouts/R-Sidebar-Layout.vue'
   import { openUserPanel } from './_state'
 </script>
 
