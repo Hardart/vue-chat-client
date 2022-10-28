@@ -1,7 +1,7 @@
 <template>
-  <div class="user-settings bg-dark">
+  <div class="user-settings bg-dark p-10">
     <div class="user-settings__user--avatar">
-      <img :src="avatar(user?.avatar)" width="42" alt="" />
+      <img :src="avatar(user?.avatar)" width="40" alt="" />
     </div>
     <div class="user-settings__user--info">
       <div class="uk-text-bold user-name">{{ user?.name }}</div>
@@ -18,7 +18,7 @@
   import { computed, inject } from 'vue'
   import { useStore } from 'vuex'
   import { useRouter } from 'vue-router'
-  import { isOpenUserSettings } from './_state.js'
+  import { isOpenUserSettings } from './_state'
   import { avatar } from '@/utils/helpers'
   const router = useRouter()
   const store = useStore()
@@ -38,13 +38,11 @@
     display: flex;
     align-items: center;
     width: auto;
-    height: 52px;
-    padding: 0 10px;
 
     &__user {
       &--avatar {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         overflow: hidden;
       }

@@ -1,29 +1,26 @@
 <template>
-  <div class="rooms bg-secondary flex flex-col w-s@s hidden@s">
-    <ul class="uk-nav uk-nav-default rooms--name">
-      <li class="rooms--name__header">Комнаты</li>
-    </ul>
-    <slot />
-  </div>
+  <ul>
+    <li class="rooms--name__header mt-5 mb-20">Комнаты</li>
+    <Room title="MAIN" />
+    <AddRoom />
+  </ul>
+  <slot />
 </template>
 
-<script setup></script>
+<script setup>
+  import Room from '@/components/Rooms/Room.vue'
+  import AddRoom from '../Rooms/AddRoom.vue'
+</script>
 
 <style lang="scss" scoped>
   .rooms {
-    position: relative;
-
     &--name {
-      width: 100%;
-      flex: 1;
-
       &__header {
-        margin: 5px;
-        padding: 5px 10px;
-        text-transform: uppercase;
-        font-size: 0.875rem;
-        text-align: left;
+        padding: 5px;
+        font-size: $standart;
         font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
       }
     }
   }

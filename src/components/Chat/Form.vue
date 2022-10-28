@@ -2,7 +2,7 @@
   <div class="chat__main--text-area">
     <form class="text-area__form">
       <input class="input" v-model="inputText" placeholder="Введите сообщение" />
-      <PnzButton class="text-area__button" color="secondary" icon="play" @click.prevent="sendMessage" :disabled="!inputText.trim()" />
+      <PnzButton class="text-area__button" color="dark" icon="play" @click.prevent="sendMessage" :disabled="!inputText.trim()" />
     </form>
   </div>
 </template>
