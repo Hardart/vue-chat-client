@@ -27,7 +27,6 @@
     &--messages-container {
       position: relative;
       flex: 1;
-      margin-bottom: 60px;
     }
 
     &--message-list {
