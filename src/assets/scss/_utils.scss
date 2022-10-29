@@ -74,7 +74,6 @@ $size in $spacing {
 }
 
 // media screen display and visibility
-
 .hidden {
   display: none;
 }
@@ -94,8 +93,11 @@ $breakpoint in $breakpoints {
   }
 }
 
-// background colors
+// bg and text colors
 @each $color in map-keys($theme-colors) {
+  .text-#{$color} {
+    color: map-get($theme-colors, $color)
+  }
   .bg-#{$color} {
     @include set-colors(map-get($theme-colors, $color), 0%);
   }

@@ -1,5 +1,7 @@
 <template>
-  <UserSettings.Container />
+  <Teleport to="body">
+    <UserSettings.Container />
+  </Teleport>
 </template>
 
 <script setup>

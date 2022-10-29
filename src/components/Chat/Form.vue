@@ -32,6 +32,13 @@
 </script>
 
 <style lang="scss" scoped>
+  .chat__main--text-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: $secondary;
+  }
   .text-area {
     &__form {
       @include display-flex;

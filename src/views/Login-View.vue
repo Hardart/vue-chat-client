@@ -1,6 +1,6 @@
 <template>
-  <div class="full-size flex flex-center flex-middle bg-primary px-40">
-    <div class="card card-secondary bdr-15 w-50@s w-33@m w-25@l">
+  <div class="absolute-0 flex flex-center flex-middle bg-primary">
+    <div class="card card-secondary bdr-15 w-50@s w-33@m w-25@l shadow-2 m-20">
       <div class="card-header pb-0">
         <h2>{{ isLoginForm ? 'Авторизация' : 'Регистрация' }}</h2>
       </div>

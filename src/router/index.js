@@ -2,14 +2,13 @@ import store from '@/store'
 import { createRouter, createWebHistory } from 'vue-router'
 import ChatView from '../views/Chat-View.vue'
 import LoginView from '../views/Login-View.vue'
-import TestView from '../views/Test-View.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     meta: { auth: true },
-    component: ChatView,
+    component: ChatView
   },
   {
     path: '/login',
@@ -20,18 +19,13 @@ const routes = [
       if (store.getters['user/isLogin']) return next({ name: 'home' })
       next()
     },
-    component: LoginView,
-  },
-  {
-    path: '/test',
-    name: 'test',
-    component: TestView,
-  },
+    component: LoginView
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes
 })
 
 router.beforeEach(async (to, from, next) => {

@@ -1,7 +1,5 @@
 <template>
-  <div class="full-size">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script setup>
@@ -27,12 +25,7 @@
 
 <style lang="scss">
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: $primary;
-  }
-  .full-size {
     @include set-absolute;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
   }
 </style>

@@ -11,14 +11,13 @@
 }
 
 body {
+  position: relative;
   height: 100vh;
-  color: $dark;
-  background: $light;
+  background: $dark;
+  overflow: hidden;
   font-family: Inter, sans-serif;
   font-size: 1rem;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -43,6 +42,10 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+.full-size {
+  @include set-absolute;
 }
 
 // svg {

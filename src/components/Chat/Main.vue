@@ -22,12 +22,12 @@
 
     > * {
       padding: 0 10px;
-      margin-bottom: 15px;
     }
 
     &--messages-container {
       position: relative;
       flex: 1;
+      margin-bottom: 60px;
     }
 
     &--message-list {
