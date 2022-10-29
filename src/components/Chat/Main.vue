@@ -34,5 +34,9 @@
       padding-left: 0;
       list-style: none;
     }
+
+    &--text-area {
+      margin-bottom: 10px;
+    }
   }
 </style>
