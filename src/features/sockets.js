@@ -7,7 +7,15 @@ import config from '../config'
 
 export const namespace = {
   io: null,
-  connect(ns) {
-    this.io = io(config.baseURL + ns.endpoint)
+  room: null,
+  connect(ns, id) {
+    this.io = io(config.baseURL + ns.endpoint, { auth: { id } })
+  },
+
+  onDisconnect(store) {
+    this.io.on('exit', users => {
+      console.log('exit')
+      // store.dispatch('setOnlineUsers', users)
+    })
   }
 }

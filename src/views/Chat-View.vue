@@ -14,12 +14,15 @@ const user = computed(() => store.getters['user/get'])
 const socket = io(config.baseURL)
 
 socket.on('nsList', ns => {
-  namespace.connect(ns)
+  namespace.connect(ns, user.value.id)
 
   store.dispatch('rooms/setRoomsList', ns.rooms)
   const roomToJoin = ns.rooms[0].title
+
   namespace.io.emit('room:join', roomToJoin, null, user.value.id)
+
   namespace.room = roomToJoin
+
   namespace.io.on('updateUsersInRoom', users => {
     store.dispatch('setOnlineUsers', users)
   })
@@ -33,5 +36,7 @@ socket.on('nsList', ns => {
       store.dispatch('rooms/setUnreadMessage', msgData.room)
     }
   })
+
+  namespace.onDisconnect(store)
 })
 </script>
