@@ -30,3 +30,9 @@ export const shouldDisable = () => {
   if (authData.value.email !== '') return true
   return false
 }
+
+export const cleanAuthData = () => {
+  for (const key of Object.keys(authData.value)) {
+    authData.value[key] = ''
+  }
+}

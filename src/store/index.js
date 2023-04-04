@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import usersApi from '@/api/users'
 import messages from './messages'
 import user from './user'
+import rooms from './rooms'
 export default createStore({
   state: {
     users: [],
@@ -11,6 +12,7 @@ export default createStore({
     all: state => state.users,
     allOnline: state => state.usersOnline
   },
+
   mutations: {
     setAllUsers(state, users) {
       state.users = users
@@ -48,7 +50,8 @@ export default createStore({
   },
   modules: {
     messages,
-    user
+    user,
+    rooms
   }
 })
 

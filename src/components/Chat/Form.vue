@@ -8,42 +8,42 @@
 </template>
 
 <script setup>
-  import { computed, inject, ref } from 'vue'
-  import { useStore } from 'vuex'
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
+import { namespace } from '../../features/sockets'
+const store = useStore()
 
-  const store = useStore()
-  const socket = inject('io')
+const user = computed(() => store.getters['user/get'])
+const inputText = ref('')
 
-  const user = computed(() => store.getters['user/get'])
-  const inputText = ref('')
-
-  function sendMessage() {
-    const message = {
-      userID: user.value.chatID,
-      userName: user.value.name,
-      sendTime: new Date(),
-      text: inputText.value,
-      userAvatar: user.value.avatar
-    }
-    socket.emit('newMessage', message)
-
-    inputText.value = ''
+function sendMessage() {
+  const message = {
+    userID: user.value.chatID,
+    userName: user.value.name,
+    sendTime: new Date(),
+    text: inputText.value,
+    userAvatar: user.value.avatar,
+    room: namespace.room
   }
+  namespace.io.emit('room:newMessage', message)
+
+  inputText.value = ''
+}
 </script>
 
 <style lang="scss" scoped>
-  .text-area {
-    &__form {
-      @include display-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    &__button {
-      width: 37px;
-      height: 37px;
-      border-radius: 8px;
-      padding: 6px;
-    }
+.text-area {
+  &__form {
+    @include display-flex;
+    align-items: center;
+    gap: 10px;
   }
+
+  &__button {
+    width: 37px;
+    height: 37px;
+    border-radius: 8px;
+    padding: 6px;
+  }
+}
 </style>

@@ -40,16 +40,16 @@ export default {
       let res = await authAPI.login(email, password)
       if (res.data) return { message: res.data.message, errors: res.data.errors }
       JWT.setAccessTokens(res.accessToken)
-      const { name, roles, chatID, avatar } = JWT.decodeAccessToken()
-      commit('setUser', { email, name, roles, chatID, avatar })
+      const { name, roles, chatID, avatar, id } = JWT.decodeAccessToken()
+      commit('setUser', { id, email, name, roles, chatID, avatar })
       return true
     },
 
     async autoLogin({ commit }) {
       let res = await authAPI.check()
       if (res.message) return resolveUserAuth()
-      const { email, name, roles, chatID, avatar } = JWT.decodeAccessToken()
-      commit('setUser', { email, name, roles, chatID, avatar })
+      const { id, email, name, roles, chatID, avatar } = JWT.decodeAccessToken()
+      commit('setUser', { id, email, name, roles, chatID, avatar })
       resolveUserAuth()
     },
 

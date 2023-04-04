@@ -23,52 +23,51 @@
 </template>
 
 <script setup>
-  import { inject } from 'vue'
-  import { useRouter } from 'vue-router'
-  import { useStore } from 'vuex'
-  import { isLoginForm, authData, checkEmail, checkPassword } from '@/features/auth/authData'
-  import icons from '@/utils/icons'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { isLoginForm, authData, checkEmail, checkPassword, cleanAuthData } from '@/features/auth/authData'
+import icons from '@/utils/icons'
 
-  const store = useStore()
-  const router = useRouter()
-  const socket = inject('io')
+const store = useStore()
+const router = useRouter()
 
-  const changeLoginForm = () => {
-    authData.value.errorText = ''
-    isLoginForm.value = !isLoginForm.value
-  }
+const changeLoginForm = () => {
+  authData.value.errorText = ''
+  isLoginForm.value = !isLoginForm.value
+}
 
-  async function tryLogin() {
-    const emailError = checkEmail()
-    const passwordError = checkPassword()
-    if (emailError) return (authData.value.errorText = emailError)
-    if (passwordError) return (authData.value.errorText = passwordError)
-    const res = await store.dispatch('user/login', { email: authData.value.email, password: authData.value.password })
-    if (res.message) return (authData.value.errorText = res.message)
-    socket.emit('enter')
-    router.push('/')
-  }
+async function tryLogin() {
+  const emailError = checkEmail()
+  const passwordError = checkPassword()
+  if (emailError) return (authData.value.errorText = emailError)
+  if (passwordError) return (authData.value.errorText = passwordError)
+  const res = await store.dispatch('user/login', { email: authData.value.email, password: authData.value.password })
+  if (res.message) return (authData.value.errorText = res.message)
+  cleanAuthData()
+  router.push('/')
+}
 
-  async function tryRegistration() {
-    const emailError = checkEmail()
-    const passwordError = checkPassword()
-    if (emailError) return (authData.value.errorText = emailError)
-    if (passwordError) return (authData.value.errorText = passwordError)
-    if (authData.value.password !== authData.value.passwordCopy) return (authData.value.errorText = 'Пароли не совпадают')
-    const res = await store.dispatch('user/registration', {
-      email: authData.value.email,
-      password: authData.value.password,
-      name: authData.value.name
-    })
-    if (res.message) return (authData.value.errorText = res.message)
-    isLoginForm.value = !isLoginForm.value
-  }
+async function tryRegistration() {
+  const emailError = checkEmail()
+  const passwordError = checkPassword()
+  if (emailError) return (authData.value.errorText = emailError)
+  if (passwordError) return (authData.value.errorText = passwordError)
+  if (authData.value.password !== authData.value.passwordCopy) return (authData.value.errorText = 'Пароли не совпадают')
+  const res = await store.dispatch('user/registration', {
+    email: authData.value.email,
+    password: authData.value.password,
+    name: authData.value.name
+  })
+  if (res.message) return (authData.value.errorText = res.message)
+  cleanAuthData()
+  isLoginForm.value = !isLoginForm.value
+}
 </script>
 
 <style lang="scss">
-  .error-msg {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: $standart;
-  }
+.error-msg {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: $standart;
+}
 </style>

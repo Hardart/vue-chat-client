@@ -15,63 +15,63 @@
 </template>
 
 <script setup>
-  import { computed, inject } from 'vue'
-  import { useStore } from 'vuex'
-  import { useRouter } from 'vue-router'
-  import { isOpenUserSettings } from './_state'
-  import { avatar, changeState } from '@/utils/helpers'
-  const router = useRouter()
-  const store = useStore()
-  const socket = inject('io')
+import { computed, inject } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { isOpenUserSettings } from './_state'
+import { avatar, changeState } from '@/utils/helpers'
+const router = useRouter()
+const store = useStore()
+// const socket = inject('io')
 
-  const user = computed(() => store.getters['user/get'])
+const user = computed(() => store.getters['user/get'])
 
-  async function tryLogout() {
-    await store.dispatch('user/logout')
-    socket.emit('logout')
-    router.push('/login')
-  }
-  const openSettings = () => changeState(isOpenUserSettings)
+async function tryLogout() {
+  await store.dispatch('user/logout')
+  // socket.emit('logout')
+  router.push('/login')
+}
+const openSettings = () => changeState(isOpenUserSettings)
 </script>
 
 <style lang="scss">
-  .user-settings {
-    display: flex;
-    align-items: center;
-    width: auto;
+.user-settings {
+  display: flex;
+  align-items: center;
+  width: auto;
 
-    &__user {
-      &--avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-
-      &--info {
-        flex: 1;
-        padding: 0 10px;
-
-        .user-name {
-          font-size: 14px;
-          line-height: 18px;
-        }
-
-        .user-id {
-          font-size: 13px;
-          line-height: 12px;
-        }
-      }
+  &__user {
+    &--avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
     }
 
-    &__buttons {
-      display: flex;
+    &--info {
+      flex: 1;
+      padding: 0 10px;
 
-      .btn {
-        width: 30px;
-        height: 30px;
-        padding: 6px;
+      .user-name {
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      .user-id {
+        font-size: 13px;
+        line-height: 12px;
       }
     }
   }
+
+  &__buttons {
+    display: flex;
+
+    .btn {
+      width: 30px;
+      height: 30px;
+      padding: 6px;
+    }
+  }
+}
 </style>

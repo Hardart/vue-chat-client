@@ -17,23 +17,23 @@
 </template>
 
 <script setup>
-  import PnzButton from '@/components/UI/PnzButton.vue'
-  import PnzInput from '@/components/UI/PnzInput.vue'
-  import { isOpenChangeNameModal, valueForChange } from '@/features/settings/changeInfo'
-  import { changeState } from '@/utils/helpers'
-  import { inject } from 'vue'
-  import { useStore } from 'vuex'
-  const store = useStore()
-  const socket = inject('io')
+import PnzButton from '@/components/UI/PnzButton.vue'
+import PnzInput from '@/components/UI/PnzInput.vue'
+import { isOpenChangeNameModal, valueForChange } from '@/features/settings/changeInfo'
+import { changeState } from '@/utils/helpers'
+import { inject } from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
+// const socket = inject('io')
 
-  const changeName = async name => {
-    await store.dispatch('user/changeName', name)
-    socket.emit('update')
-    valueForChange.value = ''
-    changeState(isOpenChangeNameModal)
-    return
-  }
-  const close = () => changeState(isOpenChangeNameModal)
+const changeName = async name => {
+  await store.dispatch('user/changeName', name)
+  // socket.emit('update')
+  valueForChange.value = ''
+  changeState(isOpenChangeNameModal)
+  return
+}
+const close = () => changeState(isOpenChangeNameModal)
 </script>
 
 <style></style>

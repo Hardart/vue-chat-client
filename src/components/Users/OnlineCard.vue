@@ -12,27 +12,27 @@
 </template>
 
 <script setup>
-  import { avatar, firstLetter } from '@/utils/helpers'
+import { avatar, firstLetter } from '@/utils/helpers'
 
-  const props = defineProps({
-    user: Object
-  })
+const props = defineProps({
+  user: Object
+})
 </script>
 
 <style lang="scss">
-  .user-online {
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
+.user-online {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
 
-    &__avatar {
-      overflow: hidden;
-      border-radius: 50%;
-    }
-
-    &__name h5 {
-      padding: 0 10px;
-      margin: 0 !important;
-    }
+  &__avatar {
+    overflow: hidden;
+    border-radius: 50%;
   }
+
+  &__name h5 {
+    padding: 0 10px;
+    margin: 0 !important;
+  }
+}
 </style>

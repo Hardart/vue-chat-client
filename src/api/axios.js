@@ -14,7 +14,6 @@ export default () => {
     res => res,
     async err => {
       if (err.response.status !== 401) return Promise.reject(err)
-
       const response = await axios.get(`${baseURL}/refresh`, { withCredentials: true })
       if (response.data.message) return Promise.reject(err)
       JWT.setAccessTokens(response.data.accessToken)
