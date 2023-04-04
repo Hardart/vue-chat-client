@@ -18,7 +18,7 @@ const inputText = ref('')
 
 function sendMessage() {
   const message = {
-    userID: user.value.chatID,
+    userID: user.value.id,
     userName: user.value.name,
     sendTime: new Date(),
     text: inputText.value,
