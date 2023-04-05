@@ -11,29 +11,31 @@ import config from '../config'
 import { namespace } from '../features/sockets'
 const store = useStore()
 const user = computed(() => store.getters['user/get'])
-const socket = io(config.baseURL)
+const baseSocket = io(config.baseURL)
 
-socket.on('nsList', ns => {
+baseSocket.on('nsList', ns => {
   namespace.connect(ns, user.value.id)
 
   store.dispatch('rooms/setRoomsList', ns.rooms)
-  const roomToJoin = ns.rooms[0].title
+  const roomID = ns.rooms[0].id
+  store.dispatch('user/setActiveRoom', roomID)
 
-  namespace.io.emit('room:join', roomToJoin, null, user.value.id)
-
-  namespace.room = roomToJoin
+  namespace.io.emit('room:join', user.value, null)
 
   namespace.io.on('updateUsersInRoom', users => {
     store.dispatch('setOnlineUsers', users)
   })
 
   namespace.io.on('room:messages-history', messages => {
-    store.dispatch('messages/loadAllMessages', messages)
+    store.dispatch('messages/loadAllMessages', { messages, roomID: user.value.activeRoom })
+    store.dispatch('messages/changeLoadState')
   })
 
   namespace.io.on('room:sendMessage', msgData => {
-    if (namespace.room !== msgData.room) {
-      store.dispatch('rooms/setUnreadMessage', msgData.room)
+    if (user.value.activeRoom !== msgData.roomID) {
+      store.dispatch('rooms/setUnreadMessage', msgData.roomID)
+    } else {
+      store.dispatch('messages/addMessage', msgData)
     }
   })
 

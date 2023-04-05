@@ -12,20 +12,22 @@ export default {
     setRoomsList(state, list) {
       state.rooms = list
     },
-    setUnreadMessage(state, roomTitle) {
-      if (state.unread[roomTitle]) {
-        state.unread[roomTitle] += 1
-      } else {
-        state.unread[roomTitle] = 1
-      }
+    setUnreadMessage(state, roomID) {
+      state.unread[roomID] = 1
+    },
+    removeUnread(state, roomID) {
+      delete state.unread[roomID]
     }
   },
   actions: {
     setRoomsList({ commit }, list) {
       commit('setRoomsList', list)
     },
-    setUnreadMessage({ commit }, roomTitle) {
-      commit('setUnreadMessage', roomTitle)
+    setUnreadMessage({ commit }, roomID) {
+      commit('setUnreadMessage', roomID)
+    },
+    removeUnread({ commit }, roomID) {
+      commit('removeUnread', roomID)
     }
   }
 }

@@ -1,10 +1,12 @@
 export default {
   namespaced: true,
   state: {
-    messages: []
+    messages: [],
+    messagesIsLoading: false
   },
   getters: {
-    all: state => state.messages
+    all: state => state.messages,
+    isLoading: state => state.messagesIsLoading
   },
   mutations: {
     loadAllMessages(state, messages) {
@@ -12,14 +14,21 @@ export default {
     },
     addMessage(state, message) {
       state.messages.push(message)
+    },
+    changeLoadState(state) {
+      state.messagesIsLoading = !state.messagesIsLoading
     }
   },
   actions: {
-    loadAllMessages({ commit }, messageHistoryArray) {
-      commit('loadAllMessages', messageHistoryArray)
+    loadAllMessages({ commit }, { messages, roomID }) {
+      commit('loadAllMessages', messages)
+      commit('rooms/removeUnread', roomID, { root: true })
     },
     addMessage({ commit }, message) {
       commit('addMessage', message)
+    },
+    changeLoadState({ commit }) {
+      commit('changeLoadState')
     }
   }
 }

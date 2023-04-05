@@ -55,6 +55,10 @@ class Calendar {
         format = 'minutes'
         value = -this.#isOverMinutes
         break
+      case this.#isOverSeconds == 0:
+        format = 'seconds'
+        value = -1
+        break
       case this.#isOverSeconds < 59:
         format = 'seconds'
         value = -this.#isOverSeconds

@@ -4,10 +4,7 @@ import config from '@/config'
 
 export default () => {
   const baseURL = config.baseURL
-  const instance = axios.create({
-    baseURL,
-    withCredentials: true
-  })
+  const instance = axios.create({ baseURL, withCredentials: true })
   instance.interceptors.request.use(addAccessToken)
 
   instance.interceptors.response.use(

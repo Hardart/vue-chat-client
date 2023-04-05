@@ -19,14 +19,11 @@ const inputText = ref('')
 function sendMessage() {
   const message = {
     userID: user.value.id,
-    userName: user.value.name,
+    roomID: user.value.activeRoom,
     sendTime: new Date(),
-    text: inputText.value,
-    userAvatar: user.value.avatar,
-    room: namespace.room
+    text: inputText.value
   }
   namespace.io.emit('room:newMessage', message)
-
   inputText.value = ''
 }
 </script>

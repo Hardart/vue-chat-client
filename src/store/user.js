@@ -3,7 +3,7 @@ import usersAPI from '@/api/users'
 import JWT from '@/utils/tokens'
 
 let resolveUserAuth
-let promise = new Promise(resolve => {
+const promise = new Promise(resolve => {
   resolveUserAuth = resolve
 })
 
@@ -26,6 +26,9 @@ export default {
     },
     changeUserName(state, name) {
       state.user = { ...state.user, name }
+    },
+    setActiveRoom(state, roomID) {
+      state.user.activeRoom = roomID
     }
   },
   actions: {
@@ -50,7 +53,7 @@ export default {
       if (res.message) return resolveUserAuth()
       const { id, email, name, roles, chatID, avatar } = JWT.decodeAccessToken()
       commit('setUser', { id, email, name, roles, chatID, avatar })
-      resolveUserAuth()
+      return resolveUserAuth()
     },
 
     async logout({ commit }) {
@@ -82,6 +85,10 @@ export default {
       JWT.setAccessTokens(res.accessToken)
       const { name } = JWT.decodeAccessToken()
       commit('changeUserName', name)
+    },
+
+    setActiveRoom({ commit }, roomID) {
+      commit('setActiveRoom', roomID)
     }
   }
 }

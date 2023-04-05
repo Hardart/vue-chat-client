@@ -3,6 +3,7 @@ import PnzInput from './PnzInput.vue'
 import PnzIconInput from './PnzIconInput.vue'
 import PnzText from './PnzText.vue'
 import PnzTooltip from './PnzTooltip.vue'
+import PnzPreloader from './PnzPreloader.vue'
 
 export default [
   {
@@ -24,5 +25,9 @@ export default [
   {
     name: 'PnzTooltip',
     self: PnzTooltip
+  },
+  {
+    name: 'PnzPreloader',
+    self: PnzPreloader
   }
 ]

@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li class="rooms--name__header mt-5 mb-20">Комнаты</li>
-    <Room @click="con(room)" v-for="room in rooms" :key="room.id" :title="room.title" />
+    <Room @click="con(room)" v-for="room in rooms" :key="room.id" :room="room" />
     <AddRoom v-if="user.roles == 'admin'" />
   </ul>
   <slot />
@@ -18,8 +18,10 @@ const rooms = computed(() => store.getters['rooms/all'])
 const user = computed(() => store.getters['user/get'])
 
 const con = room => {
-  namespace.io.emit('room:join', room.title, namespace.room, user.value.id)
-  namespace.room = room.title
+  store.dispatch('messages/changeLoadState')
+  const roomToLeave = user.value.activeRoom
+  store.dispatch('user/setActiveRoom', room.id)
+  namespace.io.emit('room:join', user.value, roomToLeave)
 }
 </script>
 

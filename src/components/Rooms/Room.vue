@@ -1,26 +1,27 @@
 <template>
   <li class="flex flex-col flex-middle mb-10">
-    <div class="room btn flex flex-center bg-dark p-15" v-tooltip="{ title, position: 'bottom' }">
-      <div v-if="unreadCount[title]" class="badge"></div>
-      <img :src="roomImg(path)" width="30" alt="" />
+    <div class="room btn flex flex-center bg-dark p-15" :class="room.active" v-tooltip="{ title: room.title, position: 'bottom' }">
+      <div v-if="unreadCount[room.id]" class="badge"></div>
+      <img :src="room.avatar" width="30" alt="" />
     </div>
   </li>
 </template>
 
 <script setup>
-import { roomImg } from '@/utils/helpers'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-const props = defineProps(['title'])
+defineProps(['room'])
 const unreadCount = computed(() => store.getters['rooms/unreadCount'])
-
-const path = '/img/rooms/main.png'
 </script>
 
 <style lang="scss">
 .room {
   position: relative;
+
+  &.active {
+    box-shadow: inset 0 0 10px 0 rgba(204, 234, 255, 0.5);
+  }
 
   .badge {
     display: block;
