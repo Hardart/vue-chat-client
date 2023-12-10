@@ -1,8 +1,8 @@
-class Calendar {
+class DateFormatter {
   /** @type {Date} */
   #date
   static init() {
-    return new Calendar()
+    return new DateFormatter()
   }
 
   static messageTime = ''
@@ -86,4 +86,4 @@ class Calendar {
   }
 }
 
-export default Calendar.init()
+export default DateFormatter.init()

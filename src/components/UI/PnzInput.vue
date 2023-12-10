@@ -4,9 +4,9 @@
 </template>
 
 <script setup>
-  // import icons from '@/utils/icons'
-  defineProps(['modelValue', 'placeholder', 'type'])
-  defineEmits(['update:modelValue'])
+// import icons from '@/utils/icons'
+defineProps(['modelValue', 'placeholder', 'type'])
+defineEmits(['update:modelValue'])
 </script>
 
 <style></style>

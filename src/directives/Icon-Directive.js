@@ -7,16 +7,17 @@ export default {
    * @param {import('vue').DirectiveBinding} binding
    */
   mounted(el, binding) {
-    const icon = binding.value?.icon
-    let ratio = binding.value?.ratio
-    if (!icon) return console.error('in Icon directive you need pass param "icon"')
-    if (icon === 'emptyIcon') return
-    if (!icons[icon]) return console.error(`There are no icon with name ${icon} in icons file`)
-    el.insertAdjacentHTML('afterbegin', icons[icon])
-    if (!ratio) ratio = 1
+    console.log(el)
+    let ratio = binding.value?.ratio ?? 1
+    // const icon = binding.value?.icon
+    // if (!icon) return console.error('in Icon directive you need pass param "icon"')
+    // if (icon === 'no') return
+    // if (!icons[icon]) return console.error(`There are no icon with name ${icon} in icons file`)
+    // el.insertAdjacentHTML('afterbegin', icons[icon])
+    // if (!ratio) ratio = 1
     const svg = el.children[0]
     if (svg.tagName === 'svg') setElementSize(svg, ratio)
-  }
+  },
 }
 /**
  * @param {HTMLElement} el

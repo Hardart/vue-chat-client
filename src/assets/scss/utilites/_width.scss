@@ -21,12 +21,10 @@ $w in $width-values {
 }
 
 // media screen width
-@each $letter,
-$breakpoint in $breakpoints {
+@each $letter, $breakpoint in $breakpoints {
   @media (min-width: $breakpoint) {
 
-    @each $value,
-    $w in $width-values {
+    @each $value, $w in $width-values {
       .w-#{$value}\@#{$letter} {
         width: $w;
       }

@@ -21,7 +21,7 @@ import PnzButton from '@/components/UI/PnzButton.vue'
 import PnzInput from '@/components/UI/PnzInput.vue'
 import { isOpenChangeNameModal, valueForChange } from '@/features/settings/changeInfo'
 import { changeState } from '@/utils/helpers'
-import { inject } from 'vue'
+// import { inject } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
 // const socket = inject('io')

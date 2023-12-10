@@ -56,7 +56,7 @@ async function tryRegistration() {
   const res = await store.dispatch('user/registration', {
     email: authData.value.email,
     password: authData.value.password,
-    name: authData.value.name
+    name: authData.value.name,
   })
   if (res.message) return (authData.value.errorText = res.message)
   cleanAuthData()

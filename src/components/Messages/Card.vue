@@ -2,7 +2,7 @@
   <li>
     <div class="message">
       <div class="message__avatar">
-        <img :src="avatar(message.userAvatar)" width="30" height="30" alt="avatar" />
+        <img :src="avatar(message.avatar)" width="30" height="30" alt="avatar" />
       </div>
       <div>
         <div class="message__body user">

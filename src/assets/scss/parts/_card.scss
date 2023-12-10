@@ -19,8 +19,7 @@
   &-footer {
     padding: 15px 20px;
 
-    @each $letter,
-    $value in $gaps {
+    @each $letter, $value in $gaps {
       @media (min-width: map-get($breakpoints, $letter)) {
         padding: $value;
       }

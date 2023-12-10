@@ -13,7 +13,7 @@ export const isLoginForm = ref(true)
 export const checkEmail = () => {
   const email = authData.value.email.trim()
   if (email === '') return 'Поле Email не может быть пустым'
-  if (email.includes(' ')) return 'Email может содержать пробелов'
+  if (email.includes(' ')) return 'Email не может содержать пробелов'
   if (!email.includes('@') || !email.includes('.')) return 'Не верный формат Email'
   return ''
 }

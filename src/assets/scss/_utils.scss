@@ -7,8 +7,7 @@
 }
 
 // margins and paddings
-@each $value,
-$size in $spacing {
+@each $value, $size in $spacing {
   .p-#{$value} {
     padding: $size;
   }
@@ -66,8 +65,7 @@ $size in $spacing {
 }
 
 //gaps
-@each $value,
-$size in $spacing {
+@each $value, $size in $spacing {
   .g-#{$value} {
     gap: $size;
   }

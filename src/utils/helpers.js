@@ -11,30 +11,22 @@ export function getCoords(el) {
 
 export const changeState = ref => (ref.value = !ref.value)
 
-/**
- * @param {string} path
- */
-export const avatar = path => {
+/** @param {string} path */
+export const setAvatarPath = path => {
   if (!path) return
   if (!path.includes('_avatar')) path = '/' + path
   return config.baseURL + path
 }
 
-/**
- * @param {string} path
- */
+/** @param {string} path */
 export const roomImg = path => {
   return config.baseURL + path
 }
 
-/**
- * @param {string} name
- */
-export const firstLetter = name => toUppercase(name.charAt(0))
+/** @param {string} name */
+export const firstLetterToUppercase = name => toUppercase(name.charAt(0))
 
-/**
- * @param {string} string
- */
+/** @param {string} string */
 export function toUppercase(string) {
   return string.toUpperCase()
 }

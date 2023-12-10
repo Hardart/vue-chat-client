@@ -1,12 +1,13 @@
 import { ref } from 'vue'
 
-export const menuItems = [{ title: 'Мой профиль', slug: 'Profile' }]
-export const comp = ref({
-  activeSlug: menuItems[0].slug,
-  activeTitle: menuItems[0].title
+export const menuItems = [{ title: 'Мой профиль', id: 'Profile' }]
+
+export const activeMenuItem = ref({
+  id: menuItems[0].id,
+  title: menuItems[0].title
 })
 
-export const setActiveComp = menuItem => {
-  comp.value.activeSlug = menuItem.slug
-  comp.value.activeTitle = menuItem.title
+export const setActiveComp = ({ id, title }) => {
+  activeMenuItem.value.id = id
+  activeMenuItem.value.title = title
 }

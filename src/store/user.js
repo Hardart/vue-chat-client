@@ -10,12 +10,12 @@ const promise = new Promise(resolve => {
 export default {
   namespaced: true,
   state: {
-    user: null
+    user: null,
   },
   getters: {
     isLogin: state => state.user !== null,
     isReady: () => promise,
-    get: state => state.user
+    get: state => state.user,
   },
   mutations: {
     setUser(state, user) {
@@ -29,7 +29,7 @@ export default {
     },
     setActiveRoom(state, roomID) {
       state.user.activeRoom = roomID
-    }
+    },
   },
   actions: {
     async registration(_, { email, password, name }) {
@@ -89,6 +89,6 @@ export default {
 
     setActiveRoom({ commit }, roomID) {
       commit('setActiveRoom', roomID)
-    }
-  }
+    },
+  },
 }

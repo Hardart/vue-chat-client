@@ -24,8 +24,9 @@ class Settings {
   #setDefaultSettings() {
     this.appSettings = {
       userPanel: false,
-      room: 'main'
+      roomID: 0
     }
+
     localStorage.setItem(this.ACCESS_NAME, this.#stringifySettings(this.appSettings))
   }
 
